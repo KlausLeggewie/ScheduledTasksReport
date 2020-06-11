@@ -1,7 +1,7 @@
 # ScheduledTasksReport
 
 PowerShell script to generate a CSV report of scheduled tasks (Windows). Uses the Get-ScheduledTask cmdlet.
-The report is for documentation of tasks withs basic task properties.
+The report is for documentation of tasks with basic task properties.
 
 ## Prerequisites
 
