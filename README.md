@@ -1,7 +1,7 @@
 # ScheduledTasksReport
 
 PowerShell script to generate a CSV report of scheduled tasks (Windows). Uses the Get-ScheduledTask cmdlet.
-The report is for documentation of tasks withs basic task propoerties.
+The report is for documentation of tasks withs basic task properties.
 
 ## Prerequisites
 
@@ -36,4 +36,4 @@ Not all possible definitions of a task are covered, e. g. if there are multiple 
 
 ## Known Issues
 
-The Get-ScheduledTask cmdlet does fetch MonthlyTriggers correctly. Therefore this interval is reported as "Other" (instead of "Monthly).
+The Get-ScheduledTask cmdlet does not fetch MonthlyTriggers correctly. Therefore monthly triggers are reported as interval "Other" (instead of "Monthly").
