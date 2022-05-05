@@ -114,4 +114,4 @@ Get-ScheduledTask -TaskPath $taskPath |
         Duration = ($_.Triggers.Repetition | Select-Object -ExpandProperty duration)     
 
         }
-     } | Export-Csv -Path $outcsv -NoTypeInformation
+     } | Export-Csv -Path $outcsv -Encoding UTF8 -NoTypeInformation
