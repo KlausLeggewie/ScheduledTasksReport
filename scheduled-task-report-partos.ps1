@@ -24,21 +24,16 @@ Sat = 64
 # reduce filepath to filename
 function GetFileNameFromPath($path)
 {
-    $filename =""
-
     if ($path -Match "\\") {
         try {
-            $filename = [io.path]::GetFileName($path)
+            return [io.path]::GetFileName($path)
         }
         catch {
-            Write-Host "GetFileNameFromPath failed" 
-            Write-Host $path 
+            Write-Host ("GetFileName failed for ",$path , "; return empty filename")
+            return ""
         }
     }
-    else {
-        $filename = $path
-    }
-    return $filename
+    return $path
 }
 
 
