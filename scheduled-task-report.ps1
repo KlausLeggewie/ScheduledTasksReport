@@ -7,8 +7,7 @@
 # pattern for task to fetch
 $taskPath = "\Microsoft\*"
 #name of the output file
-$outcsv = "c:\temp\My Scheduled Tasks-$(Get-Date -Format "yyy-MM-dd").csv"
-
+$outXlsxPath = "c:\temp\My Scheduled Tasks-$(Get-Date -Format "yyy-MM-dd").xlsx"
 
 [Flags()] enum WeekDayFlag
 {
@@ -36,6 +35,7 @@ function GetFileNameFromPath($path)
     return $path
 }
 
+$tempCsvPath = [io.path]::ChangeExtension($outXlsxPath, ".csv")
 
 Get-ScheduledTask -TaskPath $taskPath |
 # optional: use "-TaskName" for specific task
@@ -109,4 +109,15 @@ Get-ScheduledTask -TaskPath $taskPath |
         Duration = ($_.Triggers.Repetition | Select-Object -ExpandProperty duration)     
 
         }
-     } | Export-Csv -Path $outcsv -Encoding UTF8 -NoTypeInformation
+     } | Export-Csv -Path $tempCsvPath -Encoding UTF8 -NoTypeInformation
+
+    #csv to excel
+    $outXlsxPath = [io.path]::ChangeExtension($tempCsvPath, ".xlsx")
+    Remove-Item $outXlsxPath -Force -ErrorAction Ignore
+
+    $data = Import-Csv -Path $tempCsvPath -Encoding UTF8
+    $data | Export-Excel -Path $outXlsxPath -BoldTopRow -FreezeTopRow -AutoFilter -AutoSize
+    Write-Host ($outXlsxPath, " created")
+
+    #cleanup
+    Remove-Item $tempCsvPath -Force -ErrorAction Ignore

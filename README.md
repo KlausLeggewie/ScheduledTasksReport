@@ -1,17 +1,24 @@
 # ScheduledTasksReport
 
-PowerShell script to generate a CSV report of scheduled tasks (Windows). Uses the Get-ScheduledTask cmdlet.
+PowerShell script to generate an Excel report of scheduled tasks (Windows). 
 The report is for documentation of tasks with basic task properties.
+
+
+Uses
+* Get-ScheduledTask cmdlet
+* ImportExcel Package from PowerShell Gallery
 
 ## Prerequisites
 
-PowerShell Version >= 5.1 required.
+* PowerShell Version >= 5.1 required
+* ImportExcel Package installed (https://www.powershellgallery.com/packages/ImportExcel)
+
 Tested with PowerShell 7.0 and 5.1 (Windows 10 Pro)
 
-## Input
+## Customizable Parameters
 
 * $taskPath : task folder(s) to scan
-* $outcsv: path of CSV file
+* $outXlsxPath: path of Excel file
 
 ## Output
 
